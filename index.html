@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtraction of Integers System</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #1e293b;
+        --accent: #22c55e;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html, body {
+        min-height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+      header {
+        padding: 16px 24px;
+        background: var(--panel);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+      button {
+        appearance: none;
+        border: 0;
+        background: var(--accent);
+        color: var(--bg);
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        min-height: 44px;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        min-height: 0;
+        overflow: hidden;
+      }
+      iframe {
+        flex: 1;
+        width: 100%;
+        min-height: 0;
+        border: 0;
+        background: var(--bg);
+      }
+      .placeholder {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        text-align: center;
+        font-size: 20px;
+        color: var(--muted);
+      }
+          .topic {
+        flex: 1;
+        padding: 24px;
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      .topic h2 {
+        margin-top: 0;
+        font-size: 28px;
+        color: var(--accent);
+      }
+      .topic ul {
+        padding-left: 24px;
+      }
+      .topic li {
+        margin-bottom: 8px;
+      }
+          .practice {
+        flex: 1;
+        padding: 24px;
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      .practice input {
+        font-size: 18px;
+        padding: 8px 12px;
+        margin-right: 8px;
+        border-radius: 6px;
+        border: 1px solid #334155;
+        background: #0b1222;
+        color: var(--text);
+        max-width: 100%;
+      }
+      .practice button {
+        background: var(--accent);
+        color: var(--bg);
+        border: 0;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        margin-top: 12px;
+      }
+      .practice #practice-feedback {
+        margin-left: 12px;
+        font-weight: 600;
+      }
+      
+      .watermark {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 16px;
+        font-weight: bold;
+        pointer-events: none;
+        user-select: none;
+        z-index: 1000;
+      }
+      @media (max-width: 760px) {
+        header {
+          align-items: stretch;
+          flex-direction: column;
+          padding: 12px;
+        }
+        h1 {
+          font-size: 20px;
+          line-height: 1.2;
+        }
+        nav {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+          justify-content: stretch;
+          width: 100%;
+        }
+        button {
+          width: 100%;
+          padding: 10px 8px;
+          font-size: 14px;
+          white-space: normal;
+        }
+        main {
+          min-height: 0;
+          overflow: auto;
+        }
+        iframe {
+          min-height: 70vh;
+          min-height: 70dvh;
+        }
+        .topic,
+        .practice {
+          width: 100%;
+          padding: 16px;
+          font-size: 16px;
+        }
+        .topic h2,
+        .practice h2 {
+          font-size: 22px;
+          line-height: 1.2;
+        }
+        .practice input {
+          display: block;
+          width: 100%;
+          margin: 0 0 10px;
+        }
+        .practice #practice-feedback {
+          display: block;
+          margin: 10px 0 0;
+        }
+        .watermark {
+          right: 10px;
+          bottom: 8px;
+          font-size: 11px;
+        }
+      }
+      @media (max-width: 380px) {
+        nav {
+          grid-template-columns: 1fr;
+        }
+        header {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Subtraction of Integers System</h1>
+        <p style="margin: 4px 0 0 0; color: var(--muted); font-size: 14px;">by Ramel A. Lecera</p>
+      </div>
+      <nav id="program-list">
+        <button id="topic-btn">Topic</button>
+        <button id="practice-btn">Practice</button>
+        <!-- Buttons injected by JS -->
+      </nav>
+    </header>
+    <main id="content">
+      <div class="placeholder">Select a program to start</div>
+    </main>
+
+    <div class="watermark">Sumimao National High School</div>
+    
+    <script>
+      // List of programs relative to this hub
+      const programs = [
+        {
+          name: "Drag and Drop Number Sort",
+          path: "./Drag and Drop Folder/index.html",
+        },
+        {
+          name: "Single Player Snake",
+          path: "./snake-game.html",
+        },
+        {
+          name: "Integer Solo Analyzer",
+          path: "./integer-solo-analyzer.html",
+        },
+        {
+          name: "Objectives",
+          path: "./OBJECTIVES/index.html"
+        }
+      ];
+
+      const listEl = document.getElementById("program-list");
+      const contentEl = document.getElementById("content");
+      const topicBtn = document.getElementById("topic-btn");
+      const practiceBtn = document.getElementById("practice-btn");
+      let practiceScore = 0;
+      const practiceHtml = `
+        <div class="practice">
+          <h2>Practice: Subtraction of Integers</h2>
+          <p id="practice-problem"></p>
+          <input id="practice-answer" type="number" placeholder="Your answer" />
+          <button id="practice-submit">Submit</button>
+          <span id="practice-feedback"></span>
+          <p>Score: <span id="practice-score">0</span></p>
+          <button id="practice-show-example">Show Example</button>
+          <div id="practice-example" style="display:none;margin-top:12px;"></div>
+        </div>
+      `;
+      function randInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      function generatePracticeProblem() {
+        const a = randInt(-20, 20);
+        const b = randInt(-20, 20);
+        const difference = a - b;
+        const fmt = (n) => (n < 0 ? `(${n})` : n);
+        const text = `${fmt(a)} - ${fmt(b)} = ?`;
+        return { text, difference, a, b };
+      }
+      function loadPractice() {
+        practiceScore = 0;
+        contentEl.innerHTML = practiceHtml;
+        const probEl = document.getElementById('practice-problem');
+        const ansInput = document.getElementById('practice-answer');
+        const submitBtn = document.getElementById('practice-submit');
+        const feedbackEl = document.getElementById('practice-feedback');
+        const scoreEl = document.getElementById('practice-score');
+        const exampleBtn = document.getElementById('practice-show-example');
+        const exampleDiv = document.getElementById('practice-example');
+        const correctAudio = new Audio('./Drag and Drop Folder/Correct Answer Effect.mp3');
+        const wrongAudio = new Audio('./Wrong.mp3');
+        let current = generatePracticeProblem();
+        probEl.textContent = current.text;
+        const nextProblem = () => {
+          current = generatePracticeProblem();
+          probEl.textContent = current.text;
+          ansInput.value = '';
+        };
+        submitBtn.addEventListener('click', () => {
+          const val = parseInt(ansInput.value, 10);
+          if (isNaN(val)) {
+            feedbackEl.textContent = 'Enter a number.';
+            return;
+          }
+          exampleDiv.style.display = 'none';
+          if (val === current.difference) {
+            feedbackEl.textContent = 'Correct!';
+            practiceScore += 1;
+            scoreEl.textContent = practiceScore;
+            correctAudio.currentTime = 0;
+            correctAudio.play().catch(() => {});
+          } else {
+            feedbackEl.textContent = `Incorrect. Correct answer was ${current.difference}`;
+            wrongAudio.currentTime = 0;
+            wrongAudio.play().catch(() => {});
+          }
+          nextProblem();
+        });
+        const generateExample = () => {
+          const fmt = (n) => (n < 0 ? `(${n})` : n);
+          function pickNum(negative) {
+            let n;
+            do {
+              n = randInt(1, 20);
+            } while (n === Math.abs(current.a) || n === Math.abs(current.b));
+            return negative ? -n : n;
+          }
+          const exA = pickNum(current.a < 0);
+          const exB = pickNum(current.b < 0);
+          const exDifference = exA - exB;
+          const sameSign = false;
+          const rule = sameSign
+            ? 'Rule: Same signs – add absolute values and keep the sign.'
+            : 'Rule: Different signs – subtract smaller absolute value from larger and keep the sign of the larger absolute value.';
+          exampleDiv.innerHTML = `<em>Example:</em> ${fmt(exA)} - ${fmt(exB)} = ${exDifference}<br/>Rule: To subtract integers, add the opposite of the second integer.<br/>${fmt(exA)} - ${fmt(exB)} = ${fmt(exA)} + ${fmt(-exB)}`;
+        };
+        exampleBtn.addEventListener('click', () => {
+          if (exampleDiv.style.display === 'none') {
+            generateExample();
+            exampleDiv.style.display = 'block';
+          } else {
+            exampleDiv.style.display = 'none';
+          }
+        });
+      }
+      practiceBtn.addEventListener('click', loadPractice);
+
+      const topicHtml = `
+        <div class="topic">
+          <h2>Subtraction of Integers</h2>
+          <p><strong>Rules for subtracting integers:</strong></p>
+          <ul>
+            <li><b>Keep-change-change:</b> Keep the first integer, change subtraction to addition, then change the sign of the second integer.<br>Examples: 7 - 5 = 7 + (-5) = 2 &nbsp;&nbsp;|&nbsp;&nbsp; (-3) - (-8) = (-3) + 8 = 5</li>
+            <li><b>Subtracting a positive:</b> Move left on the number line.<br>Example: 4 - 9 = -5</li>
+            <li><b>Subtracting a negative:</b> Move right on the number line because subtracting a negative is adding.<br>Example: -6 - (-2) = -4</li>
+            <li><b>Subtracting zero:</b> Any integer minus 0 equals the integer itself.</li>
+          </ul>
+          <p>Visualize a number line: subtracting positive values moves left; subtracting negative values moves right.</p>
+        </div>
+      `;
+
+      function loadTopic() {
+        contentEl.innerHTML = topicHtml;
+      }
+
+      topicBtn.addEventListener("click", loadTopic);
+
+      function loadProgram(prog) {
+        // Clear current content
+        contentEl.innerHTML = "";
+        const frame = document.createElement("iframe");
+        frame.src = prog.path;
+        frame.title = prog.name;
+        contentEl.appendChild(frame);
+      }
+
+      programs.forEach((prog) => {
+        const btn = document.createElement("button");
+        btn.textContent = prog.name;
+        btn.addEventListener("click", () => loadProgram(prog));
+        listEl.appendChild(btn);
+      });
+    </script>
+  </body>
+</html>

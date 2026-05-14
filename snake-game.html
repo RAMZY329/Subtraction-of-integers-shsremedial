@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Single Player Integer Snake</title>
+  <link rel="stylesheet" href="snake-game.css" />
+</head>
+<body>
+  <div id="hud">
+    <div class="scores">
+      <span id="p1Score">Score: 0</span>
+    </div>
+    <div id="problemText">Press Start to play!</div>
+    <div class="timer-controls">
+      <span id="timer">03:00</span>
+      <div class="labels">
+        <span>Controls: W/A/S/D or Arrow Keys</span>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="gameCanvas"></canvas>
+
+  <div id="mobileControls">
+    <div class="cluster" id="p1Controls">
+      <div class="row">
+        <button data-dir="up">W</button>
+      </div>
+      <div class="row">
+        <button data-dir="left">A</button>
+        <button data-dir="down">S</button>
+        <button data-dir="right">D</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="startScreen" class="overlay">
+    <div class="panel">
+      <h1>Single Player Integer Snake</h1>
+      <p>Solve integer subtraction by guiding the snake to the correct answer tile.</p>
+      <ul class="mini">
+        <li>Numbers range: -20 to +20</li>
+        <li>Round length: 3 minutes</li>
+        <li>The snake grows after eating any answer tile</li>
+        <li>Wrong answers and self-collisions lower the score</li>
+        <li>The analyzer shows your strongest and weakest subtraction patterns</li>
+      </ul>
+      <p><strong>Controls</strong> - Use W/A/S/D, Arrow Keys, or the on-screen buttons.</p>
+      <button id="startBtn">Start Game</button>
+      <p class="status" id="statusMsg">Good luck!</p>
+    </div>
+  </div>
+
+  <div id="endScreen" class="overlay hidden">
+    <div class="panel">
+      <h2 id="resultTitle">Result</h2>
+      <p>Time's up. Want another round?</p>
+      <div id="resultAnalysis" class="analysis-box"></div>
+      <button id="restartBtn">Play Again</button>
+    </div>
+  </div>
+
+  <audio id="bgm" src="Pixelated Symphony.mp3" preload="auto" loop></audio>
+  <audio id="victorySfx" src="Victory Sound Effect.mp3" preload="auto"></audio>
+  <script src="snake-game.js" defer></script>
+</body>
+</html>
